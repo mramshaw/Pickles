@@ -28,19 +28,21 @@ If the intention is a solution that is language-agnostic, it
 is probably a good idea (for compatibility reasons) to avoid
 specifying `protocol=pickle.HIGHEST_PROTOCOL` as this may result
 in the use of an unsupported format. That said, it is probably
-a good idea to use the highest supported format (i.e. 2+) as
-they generally support more datatypes than earlier versions.
+a good idea to use the highest language-agnostic format (i.e. 2)
+as it seems to support more datatypes than earlier versions.
 
 Note that the __default__ protocol is __3__ (which is a Python 3
 format).
 
 #### Other options
 
-Some other options are [msgpack](htts://pypi.org/project/msgpack-python/)
- and [HDF5](http://docs.h5py.org/en/latest/quick.html).
+Other options are as follows:
 
-There are also `dill` and `cloudpickle` as well as
-[anycache](http://pypi.org/project/anycache/).
+* [msgpack](http://pypi.org/project/msgpack-python/)
+* [HDF5](http://docs.h5py.org/en/latest/quick.html)
+* [dill](http://pypi.org/project/dill/)
+* [cloudpickle](http://pypi.org/project/cloudpickle/)
+* [anycache](http://pypi.org/project/anycache/)
 
 ## Golang options
 
@@ -94,3 +96,4 @@ Probably the best approach is to use the `pickle` format.
 
 - [ ] Investigate Golang serialization formats (gob)
 - [ ] Investigate whether or not compression is a good idea (probably)
+- [ ] Investigate Python support for `protobuf`
