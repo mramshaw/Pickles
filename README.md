@@ -16,6 +16,81 @@ in Python. But as I was trying out
 it seemed like a good idea to look into pickling and whether or not
 it could be done in a language-agnostic way.
 
+## Python options
+
+Basically, there's `pickle`:
+
+    http://docs.python.org/3/library/pickle.html
+
+There are other options but the use of `pickle` is pretty widespread.
+
+If the intention is a solution that is language-agnostic, it
+is probably a good idea (for compatibility reasons) to avoid
+specifying `protocol=pickle.HIGHEST_PROTOCOL` as this may result
+in the use of an unsupported format. That said, it is probably
+a good idea to use the highest supported format (i.e. 2+) as
+they generally support more datatypes than earlier versions.
+
+Note that the __default__ protocol is __3__ (which is a Python 3
+format).
+
+#### Other options
+
+Some other options are [msgpack](htts://pypi.org/project/msgpack-python/)
+ and [HDF5](http://docs.h5py.org/en/latest/quick.html).
+
+There are also `dill` and `cloudpickle` as well as
+[anycache](http://pypi.org/project/anycache/).
+
+## Golang options
+
+There are options for storing data in Golang, listed below.
+
+#### Golang-only options
+
+For storing binary data with Golang:
+
+    http://golang.org/pkg/encoding/gob/
+
+I would be very surprised if this format supported compression well.
+
+#### Pickles options
+
+For reading pickled data with Golang:
+
+    http://godoc.org/github.com/hydrogen18/stalecucumber
+
+Note that only Python 2 pickle formats are supported:
+
+> Protocols 0,1,2 are implemented. These are the versions written by the Python 2.x series. Python 3 defines newer protocol versions, but can write the older protocol versions so they are readable by this package.
+
+As far as I can tell, the higher the version number, the
+more compression is applied. For the best compression, it
+is probably necessary to use Python 3.
+
+There are examples on the GitHub repo:
+
+    http://github.com/hydrogen18/stalecucumber
+
+There is a good writeup on this package here:
+
+    http://www.hydrogen18.com/blog/reading-pickled-data-in-go.html
+
+If you are planning on using `pickle` this article is well worth a read
+as it gives useful information on the internals of the `pickle` format.
+Note however the following:
+
+> In the future, I plan on adding to the library the writing of pickled objects from Go.
+
+## Language-agnostic options
+
+There is `protobuf` (although I am not sure how well Python supports it):
+
+    http://github.com/golang/protobuf
+
+Probably the best approach is to use the `pickle` format.
+
 ## To Do
 
-- [ ] Investigate Golang serialiazation formats (gob)
+- [ ] Investigate Golang serialization formats (gob)
+- [ ] Investigate whether or not compression is a good idea (probably)
