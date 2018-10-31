@@ -34,6 +34,13 @@ as it seems to support more datatypes than earlier versions.
 Note that the __default__ protocol is __3__ (which is a Python 3
 format).
 
+If performance is a concern (when is it not?) then there is
+`cPickle`:
+
+    http://pymotw.com/2/pickle/
+
+> The `cPickle` module implements the same algorithm, in C instead of Python. It is many times faster than the Python implementation, but does not allow the user to subclass from Pickle. If subclassing is not important for your use, you probably want to use cPickle.
+
 #### Other options
 
 Other options are as follows:
