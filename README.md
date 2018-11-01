@@ -73,7 +73,7 @@ According to the docs, it is safe:
 
 > In particular on Go side it is thus by default safe to decode pickles from untrusted sources(^).
 
-As `ogórek` supports Protocol 3 (the Python 3 variety), as wellas being able to ___write___ pickles, it is probably the package of choice:
+As `ogórek` supports Protocol 3 (the Python 3 variety), as well as being able to ___write___ pickles, it is probably the option of choice:
 
 ```Golang
 e := ogórek.NewEncoderWithConfig(w, &ogórek.EncoderConfig{
@@ -92,7 +92,8 @@ Note that `stalecucumber` only supports Python 2 pickle formats:
 
 As far as I can tell, the higher the version number, the
 more compression is applied. For the best compression, it
-is probably necessary to use Python 3.
+is probably necessary to use Python 3. Likewise, higher
+versions generally feature more binary-encoded data.
 
 There are examples on the GitHub repo:
 
