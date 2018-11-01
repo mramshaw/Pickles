@@ -65,11 +65,28 @@ I would be very surprised if this format supported compression well.
 
 #### Pickles options
 
-For reading pickled data with Golang:
+For reading & writing pickled data with Golang there is `ogórek`:
+
+    https://godoc.org/github.com/kisielk/og-rek
+
+According to the docs, it is safe:
+
+> In particular on Go side it is thus by default safe to decode pickles from untrusted sources(^).
+
+As `ogórek` supports Protocol 3 (the Python 3 variety), as wellas being able to ___write___ pickles, it is probably the package of choice:
+
+```Golang
+e := ogórek.NewEncoderWithConfig(w, &ogórek.EncoderConfig{
+	Protocol: 3,
+})
+err := e.Encode(obj)
+```
+
+Of course, for reading pickled data with Golang there is also `stalecucumber`:
 
     http://godoc.org/github.com/hydrogen18/stalecucumber
 
-Note that only Python 2 pickle formats are supported:
+Note that `stalecucumber` only supports Python 2 pickle formats:
 
 > Protocols 0,1,2 are implemented. These are the versions written by the Python 2.x series. Python 3 defines newer protocol versions, but can write the older protocol versions so they are readable by this package.
 
