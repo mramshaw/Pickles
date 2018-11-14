@@ -142,16 +142,14 @@ From the launch release:
 
 >A high-performance cross-system data layer for columnar in-memory analytics, Apache Arrow provides the following benefits for Big Data workloads:
 >
->   Accelerates the performance of analytical workloads by more than 100x in some cases
->   Enables multi-system workloads by eliminating cross-system communication overhead
+>-  Accelerates the performance of analytical workloads by more than 100x in some cases
+>-  Enables multi-system workloads by eliminating cross-system communication overhead
 
     http://blogs.apache.org/foundation/entry/the_apache_software_foundation_announces87
 
-As contrasted with other systems:
+As contrasted with other systems (from a [blog post by Cloudera](http://blog.cloudera.com/blog/2016/02/introducing-apache-arrow-a-fast-interoperable-in-memory-columnar-data-structure-standard/)):
 
 > Efficient and fast data interchange between systems without the serialization costs associated with other systems like Thrift, Avro, and Protocol Buffers.
-
-    From a [blog post by Cloudera](http://blog.cloudera.com/blog/2016/02/introducing-apache-arrow-a-fast-interoperable-in-memory-columnar-data-structure-standard/)
 
 ## To Do
 
