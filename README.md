@@ -151,6 +151,10 @@ As contrasted with other systems (from a [blog post by Cloudera](http://blog.clo
 
 > Efficient and fast data interchange between systems without the serialization costs associated with other systems like Thrift, Avro, and Protocol Buffers.
 
+For a deep dive into Apache Arrow, this post is worth a read:
+
+    http://www.dremio.com/origin-history-of-apache-arrow/
+
 ## To Do
 
 - [ ] Investigate Golang serialization formats (gob)
