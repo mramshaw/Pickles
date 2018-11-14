@@ -6,7 +6,7 @@ Experiments in pickling (data serialization) in Golang and Python.
 
 Parsing input data for machine learning is a time-intensive process.
 
-It's a recommended practice to serialize this data (pickle it) so as
+It's a recommended practice to serialize parsed data (pickle it) so as
 to reduce the overhead of continually processing input data - especially
 for static datasets.
 
@@ -18,7 +18,7 @@ it could be done in a language-agnostic way.
 
 ## Python options
 
-Basically, there's `pickle`:
+Basically, for Python there's `pickle`:
 
     http://docs.python.org/3/library/pickle.html
 
@@ -28,8 +28,8 @@ If the intention is a solution that is language-agnostic, it
 is probably a good idea (for compatibility reasons) to avoid
 specifying `protocol=pickle.HIGHEST_PROTOCOL` as this may result
 in the use of an unsupported format. That said, it is probably
-a good idea to use the highest language-agnostic format (i.e. 2)
-as it seems to support more datatypes than earlier versions.
+a good idea to use the highest language-agnostic format (2 or 3)
+as they seem to support more datatypes than earlier versions.
 
 Note that the __default__ protocol is __3__ (which is a Python 3
 format).
@@ -63,13 +63,16 @@ For storing binary data with Golang:
 
 I would be very surprised if this format supported compression well.
 
+It is probably possible to compress the binary data, but binary data
+generally does not compress well.
+
 #### Pickles options
 
 For reading & writing pickled data with Golang there is `ogórek`:
 
-    https://godoc.org/github.com/kisielk/og-rek
+    http://godoc.org/github.com/kisielk/og-rek
 
-According to the docs, it is safe:
+According to the docs, it is safer than reading pickled data with Python:
 
 > In particular on Go side it is thus by default safe to decode pickles from untrusted sources(^).
 
@@ -117,8 +120,42 @@ There is `protobuf` (although I am not sure how well Python supports it):
 
 Probably the best approach is to use the `pickle` format.
 
+Of course, for a truly language-agnostic option, there is [Apache Arrow](http://arrow.apache.org/):
+
+![Apache Arrow](images/Apache_Arrow.png)
+
+[Graphic stolen from the Apache Arrow website]
+
+For a summary of its advantages, there is this blog post from Wes McKinney:
+
+    http://wesmckinney.com/blog/pandas-and-apache-arrow/
+
+[Wes McKinney describes himself as the creator of Pandas and Ibis, and an Apache Arrow committer]
+
+The general consensus on Apache Arrow seems to be that it obviates
+the expensive serialization/de-serialization overhead found with
+other options.
+
+It also enables interoperability between Python and R.
+
+From the launch release:
+
+>A high-performance cross-system data layer for columnar in-memory analytics, Apache Arrow provides the following benefits for Big Data workloads:
+>
+>   Accelerates the performance of analytical workloads by more than 100x in some cases
+>   Enables multi-system workloads by eliminating cross-system communication overhead
+
+    http://blogs.apache.org/foundation/entry/the_apache_software_foundation_announces87
+
+As contrasted with other systems:
+
+> Efficient and fast data interchange between systems without the serialization costs associated with other systems like Thrift, Avro, and Protocol Buffers.
+
+    From a [blog post by Cloudera](http://blog.cloudera.com/blog/2016/02/introducing-apache-arrow-a-fast-interoperable-in-memory-columnar-data-structure-standard/)
+
 ## To Do
 
 - [ ] Investigate Golang serialization formats (gob)
 - [ ] Investigate whether or not compression is a good idea (probably)
-- [ ] Investigate Python support for `protobuf`
+- [ ] Investigate support for `protobuf` in Python
+- [ ] Investigate [Apache Arrow](http://github.com/apache/arrow)
