@@ -114,9 +114,16 @@ Note however the following:
 
 ## Language-agnostic options
 
-There is `protobuf` (although I am not sure how well Python supports it):
+Google developed `protobuf` which supports a number of languages (among them, Python and Go):
 
-    http://github.com/golang/protobuf
+    http://developers.google.com/protocol-buffers/
+
+They describe protobufs as:
+
+> a language-neutral, platform-neutral, extensible way of serializing structured data for use
+> in communications protocols, data storage, and more
+
+Check out my [protobuf experiments with Python and Go](http://github.com/mramshaw/protobufs) repo.
 
 Probably the best approach is to use the `pickle` format.
 
@@ -159,5 +166,5 @@ For a deep dive into Apache Arrow, this post is worth a read:
 
 - [ ] Investigate Golang serialization formats (gob)
 - [ ] Investigate whether or not compression is a good idea (probably)
-- [ ] Investigate support for `protobuf` in Python
+- [x] Investigate `protobuf` support in Python (see my [protobufs](http://github.com/mramshaw/protobufs) repo)
 - [ ] Investigate [Apache Arrow](http://github.com/apache/arrow)
